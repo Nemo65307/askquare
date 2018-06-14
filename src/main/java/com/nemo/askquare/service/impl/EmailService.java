@@ -5,11 +5,14 @@ import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 
-public class EmailService {
+public final class EmailService {
 
     private static final String HOST = "smtp.mail.yahoo.com";
     private static final int PORT = 465;
     private static final boolean SSL_FLAG = true;
+
+    private EmailService() {
+    }
 
     public static void sendConfirmation(String emailAddress, String subject, String message) throws EmailException {
         Email email = new SimpleEmail();

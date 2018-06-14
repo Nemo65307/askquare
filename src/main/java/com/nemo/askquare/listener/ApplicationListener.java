@@ -13,6 +13,7 @@ public class ApplicationListener implements ServletContextListener {
     public ApplicationListener() {
     }
 
+    @Override
     public void contextInitialized(ServletContextEvent sce) {
       /* This method is called when the servlet context is
          initialized(when the Web application is deployed). 
@@ -21,6 +22,7 @@ public class ApplicationListener implements ServletContextListener {
         ServiceManager.getInstance(sce.getServletContext());
     }
 
+    @Override
     public void contextDestroyed(ServletContextEvent sce) {
       /* This method is invoked when the Servlet Context 
          (the Web application) is undeployed or 

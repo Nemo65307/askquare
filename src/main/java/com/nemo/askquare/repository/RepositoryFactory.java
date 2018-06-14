@@ -18,6 +18,9 @@ import static com.nemo.askquare.repository.ConnectionUtils.getCurrentConnection;
 
 public class RepositoryFactory {
 
+    private RepositoryFactory() {
+    }
+
     @SuppressWarnings("unchecked")
     public static <T> T createRepository(Class<T> repositoryInterface) {
         return (T) Proxy.newProxyInstance(RepositoryFactory.class.getClassLoader(),
@@ -98,15 +101,9 @@ public class RepositoryFactory {
         }
 
         private Object select(Connection connection, Select select, Method method, Object[] args) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, SQLException {
-           /* Class<?> returnType = findResultType(method);
-            boolean isCollection = Collection.class.isAssignableFrom(method.getReturnType());
-            DefaultResultSetHandler handler = build(returnType, isCollection, select.resultSetHandlerClass());
-            return new QueryRunner().query(connection, select.sql(),
-                    handler, args);*/
             if (method.getReturnType() == Long.class) {
                 ResultSetHandler handler = new ScalarHandler();
-                Long result = (Long) new QueryRunner().query(connection, select.sql(), handler, args);
-                return result;
+                return (Long) new QueryRunner().query(connection, select.sql(), handler, args);
             }
             Class<?> returnType = findResultType(method);
             boolean isCollection = Collection.class.isAssignableFrom(method.getReturnType());

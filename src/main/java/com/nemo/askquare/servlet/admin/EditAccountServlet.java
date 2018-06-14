@@ -32,7 +32,6 @@ public class EditAccountServlet extends AbstractServlet {
         if (!(account.getLogin().equals(login) && account.getFirstName().equals(firstName) &&
                 account.getSecondName().equals(secondName) && account.getLastName().equals(lastName) &&
                 (account.getPassword().equals(password) || password.length() == 0))) {
-            System.out.println("inside");
             if (password.length() == 0) password = account.getPassword();
             getAdminService().updateAccount(login, password, firstName, secondName, lastName, account.getId());
         }

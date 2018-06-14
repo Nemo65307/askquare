@@ -13,6 +13,7 @@ public abstract class AbstractFilter implements Filter {
 
     private ServiceManager serviceManager;
 
+    @Override
     public final void init(FilterConfig config) throws ServletException {
         serviceManager = ServiceManager.getInstance(config.getServletContext());
         initFilter();
@@ -38,6 +39,7 @@ public abstract class AbstractFilter implements Filter {
 
     public abstract void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain) throws ServletException, IOException;
 
+    @Override
     public void destroy() {
     }
 

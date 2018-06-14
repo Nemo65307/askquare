@@ -13,7 +13,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Arrays;
 
-public class ServiceFactory {
+class ServiceFactory {
+
+    private ServiceFactory() {
+    }
 
     public static Object createService(DataSource dataSource, Object realService) {
         return Proxy.newProxyInstance(ServiceFactory.class.getClassLoader(), realService.getClass().getInterfaces(),
