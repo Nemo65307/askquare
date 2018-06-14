@@ -38,7 +38,6 @@ public class LoginServlet extends AbstractServlet {
                 String token = getCommonService().generateRememberMeToken(account);
                 Cookie cookie = new Cookie(AUTOLOGIN_COOKIE, token);
                 cookie.setMaxAge(60 * 60 * 24 * 3); // seconds. 3 days expiring age
-                cookie.setSecure(true);
                 resp.addCookie(cookie);
             }
             System.out.println(account + " has successfully logged in with role id=" + account.getRoleId());
