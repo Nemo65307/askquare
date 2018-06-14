@@ -24,13 +24,13 @@ public class LoginServlet extends AbstractServlet {
             Account account = (Account) req.getSession().getAttribute(CURRENT_ACCOUNT);
             resp.sendRedirect(pageToRedirect(account.getRoleId()));
         } else {
-            req.getRequestDispatcher("WEB-INF/view/login.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(req, resp);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LoginForm form = createForm(LoginForm.class, req); //TODO add the same form logic to other servlets
+        LoginForm form = createForm(LoginForm.class, req);
         try {
             Account account = getCommonService().login(form);
             req.getSession().setAttribute(CURRENT_ACCOUNT, account);
@@ -44,7 +44,7 @@ public class LoginServlet extends AbstractServlet {
             resp.sendRedirect(pageToRedirect(form.getRole()));
         } catch (ValidationException e) {
             req.setAttribute("error", e.getMessage());
-            forwardToPage("login.jsp", req, resp);
+            req.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(req, resp);
         }
     }
 

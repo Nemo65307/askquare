@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" trimDirectiveWhitespaces="true" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 
 <!doctype html>
 <html lang="en">
@@ -19,6 +19,9 @@
 
 <body class="text-center">
 <form class="form-signin" method="post" action="/login">
+    <c:if test="${error != null}">
+        <div class="alert alert-danger" role="alert">${error}</div>
+    </c:if>
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="inputLogin" class="sr-only">Login</label>
     <input name="login" type="text" id="inputLogin" class="form-control" placeholder="Login" required autofocus>
@@ -41,5 +44,14 @@
     <a href="/signup">New here? Sign up</a>
     <p class="mt-5 mb-3 text-muted">&copy;Nemo65307 2018</p>
 </form>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 </html>

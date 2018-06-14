@@ -34,10 +34,14 @@ public class ServiceFactory {
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             Method m = findMethod(method);
             Transactional transactional = m.getAnnotation(Transactional.class);
-            if (transactional != null) {
-                return invokeTransactional(transactional, m, args);
-            } else {
-                return m.invoke(realService, args);
+            try {
+                if (transactional != null) {
+                    return invokeTransactional(transactional, m, args);
+                } else {
+                    return m.invoke(realService, args);
+                }
+            } catch (InvocationTargetException e) {
+                throw e.getCause();
             }
         }
 
